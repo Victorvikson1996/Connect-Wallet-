@@ -10,11 +10,11 @@
 - iOS and Android
 
 <p float="left">
-  <img src="screenshots/connet?raw=true" width="360" />
-  <img src="screenshots/connet1.PNG?raw=true" width="360" />
-  <img src="screenshots/connet2.PNG?raw=true" width="360" />
-  <img src="screenshots/connet3.PNG?raw=true" width="360" />
-  <img src="screenshots/connet4.PNG?raw=true" width="360" />
+  <img src="Screenshots/connetPNG?raw=true" width="360" />
+  <img src="Screenshots/connet1.PNG?raw=true" width="360" />
+  <img src="Screenshots/connet2.PNG?raw=true" width="360" />
+  <img src="Screenshots/connet3.PNG?raw=true" width="360" />
+  <img src="Screenshots/connet4.PNG?raw=true" width="360" />
 </p>
 
 ## Install & Build
@@ -26,5 +26,5 @@ Install: `yarn` or `yarn install`
 Run Project Locally: `yarn dev` or `Expo start`
 
 <p align="center">
-  <img src="screenshots/connet.png?raw=true" />
+  <img src="Screenshots/connet.png?raw=true" />
 </p>
