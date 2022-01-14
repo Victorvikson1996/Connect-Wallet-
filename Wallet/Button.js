@@ -1,21 +1,21 @@
 import React from 'react'
-import { View, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 
 const Button = ({ label, onPress }) => {
-  retun(
+  return (
     <TouchableOpacity onPress={onPress} style={styles.button}>
       <Text style={styles.text}>{label}</Text>
-    </TouchableOpacity>,
+    </TouchableOpacity>
   )
 }
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#5A45FF',
+    backgroundColor: '#171516',
     color: '#FFFFFF',
     borderRadius: 12,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+    paddingHorizontal: 20,
+    paddingVertical: 20,
   },
 
   text: {
