@@ -24,6 +24,6 @@ Install: `yarn` or `yarn install`
 
 Run Project Locally: `yarn dev` or `Expo start`
 
-<p align="center" width="360">
-  <img src="Screenshots/connet.PNG?raw=true" />
+<p align="center" >
+  <img src="Screenshots/connet.PNG?raw=true" width="360" />
 </p>
