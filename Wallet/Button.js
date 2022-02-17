@@ -1,5 +1,12 @@
 import React from 'react'
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  Pressable,
+} from 'react-native'
+import COLORS from '../utils/colors'
 
 const Button = ({ label, onPress }) => {
   return (
