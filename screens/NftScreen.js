@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import {
   View,
   Text,
@@ -7,19 +7,36 @@ import {
   Image,
   StatusBar,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native'
 import COLORS from '../utils/colors'
+import { useWalletConnect } from '@walletconnect/react-native-dapp'
+import { useNavigation } from '@react-navigation/native'
 
-const NftConnectButton = ({ label, onPress, navigation }) => {
+import NftImages from '../utils/NftImages'
+const { width } = Dimensions.get('window')
+
+const WalletAddress = (address) => {
+  return `${address.slice(0, 6)}...${address.slice(
+    address.length - 4,
+    address.length,
+  )}`
+}
+
+const NftConnectButton = ({ label, onPress, Search }) => {
+  const connector = useWalletConnect()
+
+  const connectWallet = useCallback(() => {
+    return connector.connect()
+  }, [connector])
+  const navigation = useNavigation()
+
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate('Search')}
       style={styles.btn}
-      activeOpacity={0.7}
     >
-      <Text style={{ color: COLORS.black, fontWeight: 'bold' }}>
-        Connect Wallet 🚀{' '}
-      </Text>
+      <Text style={{ color: COLORS.black, fontWeight: 'bold' }}>{label}</Text>
     </TouchableOpacity>
   )
 }
@@ -32,7 +49,11 @@ const NftScreen = ({
   address,
   description,
   attributes,
+  onPress,
 }) => {
+  const NftRandomImages =
+    NftImages[Math.floor(Math.random() * NftImages.length)]
+
   return (
     <SafeAreaView
       style={{ backgroundColor: COLORS.black, flex: 1, alignItems: 'center' }}
@@ -40,8 +61,8 @@ const NftScreen = ({
       <StatusBar barStyle="light-content" />
       <View style={styles.imageNFT}>
         <Image
-          style={{ height: 250, width: 180, marginTop: 70 }}
-          source={require('../src/assets/nft.png')}
+          style={{ height: 320, width: width * 0.77 }}
+          source={{ uri: NftRandomImages }}
         />
         <View
           style={{
@@ -52,7 +73,7 @@ const NftScreen = ({
         >
           <Text style={styles.title}>View Your NFT</Text>
           <Text style={styles.title}>By Connecting To Your Wallet</Text>
-          <NftConnectButton navigation={navigation} />
+          <NftConnectButton label="Connet Wallet 🚀 " navigation={navigation} />
         </View>
       </View>
     </SafeAreaView>

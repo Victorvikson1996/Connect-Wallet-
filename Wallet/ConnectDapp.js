@@ -3,7 +3,7 @@ import { Text } from 'react-native'
 import { useWalletConnect } from '@walletconnect/react-native-dapp'
 import Button from './Button'
 
-const makeAddressShort = (address) => {
+const WalletAddress = (address) => {
   return `${address.slice(0, 6)}...${address.slice(
     address.length - 4,
     address.length,
@@ -27,7 +27,7 @@ export default function ConnectDapp() {
         <Button onPress={connectWallet} label="Connect Your Wallet 🚀 " />
       ) : (
         <>
-          <Text>{makeAddressShort(connector.accounts[0])}</Text>
+          <Text>{WalletAddress(connector.accounts[0])}</Text>
           <Button onPress={killSession} label="Sign out 💆 " />
         </>
       )}

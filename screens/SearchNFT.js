@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   View,
   Text,
@@ -11,6 +11,10 @@ import {
   FlatList,
   ScrollView,
 } from 'react-native'
+
+// import { getNFTsMetadata } from '../api/FetchNft'
+import { ActivityIndicator } from 'react-native-paper'
+import { fetchNFTs } from '../api/FetchNft'
 
 import NftCard from '../components/NftCard'
 
@@ -27,9 +31,14 @@ const SearchNFT = ({
   description,
   attributes,
 }) => {
-  const [searchQuery, setSearchQuery] = useState('')
+  const [contractAddress, setContractAddress] = useState('')
+  const [NFTs, setNFTs] = useState('')
+  const [loading, setLoading] = useState(true)
 
-  const onChangeSearch = (query) => setSearchQuery(query)
+  useEffect(() => {
+    fetchNFTs()
+  }, [])
+
   return (
     <SafeAreaView>
       <StatusBar barStyle="dark-content" backgroundColor={COLORS.white} />
@@ -43,8 +52,9 @@ const SearchNFT = ({
         <Searchbar
           placeholder="Insert Your NFT Address"
           style={{ width: 320, marginLeft: 30 }}
-          onChangeText={onChangeSearch}
-          value={searchQuery}
+          onChangeText={setContractAddress}
+          value={contractAddress}
+          onPressIn={() => console.log(fetchNFTs)}
         />
       </View>
       <ScrollView showsHorizontalScrollIndicator={false}>
@@ -52,6 +62,7 @@ const SearchNFT = ({
         <FlatList
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{ paddingRight: 20, paddingBottom: 20 }}
+          decelerationRate="fast"
           horizontal
           data={collections}
           renderItem={({ item }) => (
@@ -84,6 +95,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: COLORS.black,
     fontSize: 25,
+  },
+
+  btn: {
+    height: 50,
+    width: 150,
+    backgroundColor: COLORS.black,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 40,
   },
 })
 
