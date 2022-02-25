@@ -1,15 +1,20 @@
 import './global'
-import * as React from 'react'
-
-import { StatusBar } from 'expo-status-bar'
+import React, { useCallback, useEffect } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import ConnectDapp from './Wallet/ConnectDapp'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { WalletConnectProvider } from '@walletconnect/react-native-dapp/dist/providers'
 
+import {
+  withWalletConnect,
+  useWalletConnect,
+} from '@walletconnect/react-native-dapp'
+
+import Navigation from './navigation/Navigation'
+
 const SCHEME_FROM_APP_JSON = 'connectDapp'
 
-export default function App() {
+export default function App({}) {
   return (
     <WalletConnectProvider
       redirectUrl={
@@ -21,10 +26,9 @@ export default function App() {
         asyncStorage: AsyncStorage,
       }}
     >
-      <View style={styles.container}>
-        <ConnectDapp />
-        <StatusBar style="auto" />
-      </View>
+      <Navigation />
+      {/* <ConnectDapp styles={styles.container} /> */}
+      {/* <ChainSelector style={styles.container} /> */}
     </WalletConnectProvider>
   )
 }
